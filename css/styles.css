@@ -60,4 +60,38 @@ section#filtros button {
     border-radius: 5px;
     background-color: white;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+
+    display: grid;
 }
+
+
+/* Alineación derecha del nav */
+.navegacion-derecha {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+/* Lista horizontal sin viñetas */
+.navegacion-derecha ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Botones con estilo opcional */
+.navegacion-derecha button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navegacion-derecha button:hover {
+  background-color: #0056b3;
+}
+

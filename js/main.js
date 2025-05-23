@@ -1,8 +1,20 @@
-const productos = [
+let productos = [];
+let productosFiltrados = [];
+let currentPage = 1;
+let productosPorPagina = 15;
+
+// Detectar si estamos en buscador
+const esBuscador = window.location.pathname.includes("buscador.html");
+if (esBuscador) {
+    productosPorPagina = 10;
+}
+
+function cargarProductos() {
+    productos = productos = [
   {
     "nombre": "Sensor de Proximidad Inductivo",
     "categoria": "Sensores",
-    "imagen": "https://bytefix.com/img/producto_1.jpg",
+    "imagen": "https://ferretronica.com/cdn/shop/files/SensorInductivodeProximidadparaMetalLJ12A3-4-Z-BYPNPNormalmenteAbierto_Ferretronica_f6822d1e-7cdd-4e77-93b8-b3619788941c_x700.jpg?v=1685189319",
     "codigo": "abc16b100",
     "precio": 405.25,
     "marca": "Siemens",
@@ -14,7 +26,7 @@ const productos = [
   {
     "nombre": "PLC Siemens S7-1200",
     "categoria": "Controladores",
-    "imagen": "https://bytefix.com/img/producto_2.jpg",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrm5lL3_UYMg6uZIa6Qspedx8-GQ1-V58Rlg&s",
     "codigo": "abc16b101",
     "precio": 132.87,
     "marca": "Siemens",
@@ -600,4 +612,88 @@ const productos = [
     ]
   }
 ];
-export default productos;
+    productosFiltrados = [...productos];
+    renderProductos();
+}
+
+function renderProductos() {
+    const contenedor = document.getElementById('contenedor-productos');
+    contenedor.innerHTML = '';
+    const inicio = (currentPage - 1) * productosPorPagina;
+    const fin = inicio + productosPorPagina;
+    const productosPagina = productosFiltrados.slice(inicio, fin);
+
+    if (productosPagina.length === 0) {
+        contenedor.innerHTML = '<p>No se encontraron productos.</p>';
+        return;
+    }
+
+    for (let i = 0; i < productosPagina.length; i++) {
+        const producto = productosPagina[i];
+        contenedor.innerHTML += `
+            <div class="producto">
+                <img src="${producto.imagen}" alt="${producto.nombre}" width="100">
+                <h3>${producto.nombre}</h3>
+                <p>Precio: $${producto.precio}</p>
+                <p>Categoría: ${producto.categoria}</p>
+                <p>Stock: ${producto.stock}</p>
+            </div>
+        `;
+    }
+
+    renderPaginacion();
+}
+
+function renderPaginacion() {
+    const paginacion = document.getElementById('paginacion');
+    paginacion.innerHTML = '';
+    const totalPaginas = Math.ceil(productosFiltrados.length / productosPorPagina);
+
+    if (currentPage > 1) {
+        paginacion.innerHTML += `<button onclick="cambiarPagina(${currentPage - 1})">Anterior</button>`;
+    }
+
+    paginacion.innerHTML += `<span> Página ${currentPage} de ${totalPaginas} </span>`;
+
+    if (currentPage < totalPaginas) {
+        paginacion.innerHTML += `<button onclick="cambiarPagina(${currentPage + 1})">Siguiente</button>`;
+    }
+}
+
+function cambiarPagina(pagina) {
+    currentPage = pagina;
+    renderProductos();
+}
+
+function filtrarProductos() {
+    const filtroNombre = document.getElementById('filtro-nombre').value.toLowerCase();
+    const filtroCategoria = document.getElementById('filtro-categoria').value.toLowerCase();
+    const filtroPrecioMax = parseFloat(document.getElementById('filtro-precio-max').value);
+
+    productosFiltrados = []; // Limpiar antes de agregar
+
+    for (let i = 0; i < productos.length; i++) {
+        const p = productos[i];
+        const coincideNombre = filtroNombre === '' || p.nombre.toLowerCase().includes(filtroNombre);
+        const coincideCategoria = filtroCategoria === '' || p.categoria.toLowerCase().includes(filtroCategoria);
+        const coincidePrecio = isNaN(filtroPrecioMax) || p.precio <= filtroPrecioMax;
+
+        if (coincideNombre && coincideCategoria && coincidePrecio) {
+            productosFiltrados.push(p);
+        }
+    }
+
+    currentPage = 1;
+    renderProductos();
+}
+
+function limpiarFiltros() {
+    document.getElementById('filtro-nombre').value = '';
+    document.getElementById('filtro-categoria').value = '';
+    document.getElementById('filtro-precio-max').value = '';
+    productosFiltrados = [...productos];
+    currentPage = 1;
+    renderProductos();
+}
+
+window.onload = cargarProductos;

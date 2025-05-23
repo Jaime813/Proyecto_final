@@ -8,11 +8,22 @@
 </head>
 <body>
 
+  <script>
+    // Mostrar alerta al cargar la página
+    alert(
+      "Para crear un producto:\n\n" +
+      "Ingrese nombre, categoría, precio y stock.\n" +
+      "Seleccione una imagen representativa.\n" +
+      "Guarde el producto para verlo en la lista general.\n" +
+      "Ejemplo de opciones disponibles: Taladro, Compresor, Sierra, etc."
+    );
+  </script>
+
   <header>
-    <nav>
+    <nav class="navegacion-derecha">
       <ul>
-        <li><button onclick="window.location.href='productos.html'">Ver Productos</button></li>
-        <li><button onclick="window.location.href='index.html'">Inicio</button></li>
+        <li><a href="productos.html">Ver Productos</a></li>
+        <li><a href="index.html">Inicio</a></li>
       </ul>
     </nav>
     <h1>Registrar nuevo producto</h1>
@@ -46,7 +57,6 @@
           <input type="text" id="imagen" placeholder="Ruta de imagen (opcional)" value="img/fondo.png">
         </div>
 
-        <!-- Botón dentro del formulario -->
         <button type="submit">Registrar Producto</button>
       </form>
     </section>
@@ -63,3 +73,5 @@
 
 </body>
 </html>
+
+
