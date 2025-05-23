@@ -10,7 +10,7 @@ if (esBuscador) {
 }
 
 function cargarProductos() {
-    productos = productos = [
+     productos = [
   {
     "nombre": "Sensor de Proximidad Inductivo",
     "categoria": "Sensores",
@@ -668,7 +668,7 @@ function cambiarPagina(pagina) {
 function filtrarProductos() {
     const filtroNombre = document.getElementById('filtro-nombre').value.toLowerCase();
     const filtroCategoria = document.getElementById('filtro-categoria').value.toLowerCase();
-    const filtroPrecioMax = parseFloat(document.getElementById('filtro-precio-max').value);
+    
 
     productosFiltrados = []; // Limpiar antes de agregar
 
@@ -676,9 +676,9 @@ function filtrarProductos() {
         const p = productos[i];
         const coincideNombre = filtroNombre === '' || p.nombre.toLowerCase().includes(filtroNombre);
         const coincideCategoria = filtroCategoria === '' || p.categoria.toLowerCase().includes(filtroCategoria);
-        const coincidePrecio = isNaN(filtroPrecioMax) || p.precio <= filtroPrecioMax;
+        
 
-        if (coincideNombre && coincideCategoria && coincidePrecio) {
+        if (coincideNombre && coincideCategoria ) {
             productosFiltrados.push(p);
         }
     }
@@ -690,7 +690,7 @@ function filtrarProductos() {
 function limpiarFiltros() {
     document.getElementById('filtro-nombre').value = '';
     document.getElementById('filtro-categoria').value = '';
-    document.getElementById('filtro-precio-max').value = '';
+    
     productosFiltrados = [...productos];
     currentPage = 1;
     renderProductos();

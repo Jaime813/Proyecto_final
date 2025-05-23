@@ -1,97 +1,360 @@
-/* General */
+/* ===== RESET BÁSICO ===== */
 * {
-    margin: 8px;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ===== CONFIGURACIÓN GLOBAL ===== */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    max-width: 1200px; /* Limitar el ancho de todo el contenido */
-    margin: 0 auto;    /* Centrar el contenido */
-    background-color: #f9f9f9;
-    
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f5f8fa;
+  color: #333;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-/* Centrar textos */
-.centrar-texto {
-    text-align: center;
+/* ===== ENCABEZADO PRINCIPAL ===== */
+header {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
 }
 
-/* Encabezados */
-h1 {
-    color: #2c3e50;
-    margin-bottom: 20px;
+.encabezado-contenido {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Navegación */
-nav {
-    margin-bottom: 20px;
+.encabezado-contenido h1 {
+  color: #2c3e50;
+  font-size: 2.2em;
+  margin-bottom: 10px;
 }
 
-nav button {
-    margin-right: 10px;
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.encabezado-contenido p {
+  font-size: 1.1em;
+  color: #555;
 }
 
-nav button:hover {
-    background-color: #2980b9;
-}
-
-/* Filtros */
-section#filtros input,
-section#filtros button {
-    margin: 5px;
-    padding: 8px;
-}
-
-/* Producto */
-.producto {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-
-    display: grid;
-}
-
-
-/* Alineación derecha del nav */
+/* ===== NAVEGACIÓN DERECHA ===== */
 .navegacion-derecha {
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
 }
 
-/* Lista horizontal sin viñetas */
 .navegacion-derecha ul {
-  display: flex;
-  gap: 10px;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  display: flex;
+  gap: 15px;
 }
 
-/* Botones con estilo opcional */
-.navegacion-derecha button {
-  padding: 8px 12px;
-  background-color: #007bff;
+.navegacion-derecha a {
+  text-decoration: none;
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  background-color: #007bff;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-.navegacion-derecha button:hover {
+.navegacion-derecha a:hover {
   background-color: #0056b3;
 }
 
+/* ===== SECCIONES ===== */
+main section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+main h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+main p, main li {
+  font-size: 1em;
+  color: #444;
+}
+
+/* ===== LISTA DE SERVICIOS ===== */
+section ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+section ul li::before {
+  content: "•";
+  color: #007bff;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* Emojis ya están en el HTML, pero puedes personalizarlos */
+section ul li {
+  margin-bottom: 10px;
+}
+
+/* ===== PIE DE PÁGINA ===== */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #777;
+  padding: 10px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navegacion-derecha {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .navegacion-derecha ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navegacion-derecha a {
+    width: 100%;
+    text-align: center;
+  }
+
+  body {
+    padding: 10px;
+  }
+}
+
+
+/* === PRODUCTOS.HTML === */
+
+#contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5em;
+  padding: 2em;
+}
+
+.producto {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.producto:hover {
+  transform: scale(1.02);
+}
+
+.producto img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.producto h3 {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.producto p {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #666;
+}
+
+/* Paginación */
+#paginacion {
+  text-align: center;
+  padding: 1em;
+}
+
+#paginacion button {
+  padding: 8px 14px;
+  margin: 0 5px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#paginacion button:hover {
+  background-color: #2980b9;
+}
+
+#paginacion span {
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+
+/* === REGISTRO.HTML === */
+
+form#formulario-producto {
+  max-width: 600px;
+  margin: 2em auto;
+  background-color: #ffffff;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+form#formulario-producto div {
+  display: flex;
+  flex-direction: column;
+}
+
+form#formulario-producto label {
+  margin-bottom: 0.4em;
+  font-weight: bold;
+  color: #333;
+}
+
+form#formulario-producto input[type="text"],
+form#formulario-producto input[type="number"] {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s ease-in-out;
+}
+
+form#formulario-producto input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+form#formulario-producto button[type="submit"] {
+  padding: 12px;
+  font-size: 1em;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form#formulario-producto button:hover {
+  background-color: #2980b9;
+}
+
+
+/* === BUSCADOR.HTML === */
+
+/* Contenedor de filtros */
+#filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  padding: 1.5em;
+  margin: 2em auto;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Inputs de texto */
+#filtros input[type="text"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 250px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+#filtros input[type="text"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Botones */
+#filtros button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#filtros button:hover {
+  background-color: #2c80b4;
+}
+
+/* Resultados */
+#contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+  padding: 1em;
+}
+
+/* Estilo individual del producto */
+.producto {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.producto img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Paginación */
+#paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin: 2em 0;
+}
+
+#paginacion button {
+  padding: 10px 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#paginacion button:hover {
+  background-color: #0056b3;
+}
+
+#paginacion span {
+  font-weight: bold;
+  color: #333;
+}
