@@ -65,7 +65,7 @@ function cargarProductos() {
   {"id": 44, "nombre": "Extractor de IC (componentes)", "precio": 100, "categoria": "Herramientas de Reparación", "stock": 18, "imagen": "img/Product/botiquin.jpg"},
   {"id": 45, "nombre": "Maletín antiestático para transporte", "precio": 2700, "categoria": "Almacenamiento", "stock": 3, "imagen": "img/Product/extractorIC.jpg"},
   {"id": 46, "nombre": "Kit de sensores Arduino", "precio": 800, "categoria": "Componentes", "stock": 6, "imagen": "img/Product/maletinant.jpg"},
-  {"id": 47, "nombre": "Foco LED lupa de aumento", "precio": 1200, "categoria": "Instrumentación", "stock": 4, "imagen": "img/Product/kit sensores.htm"},
+  {"id": 47, "nombre": "Foco LED lupa de aumento", "precio": 1200, "categoria": "Instrumentación", "stock": 4, "imagen": "img/Product/kitsensores.jpg"},
   {"id": 48, "nombre": "Termocupla tipo K para multímetros", "precio": 150, "categoria": "Instrumentación", "stock": 10, "imagen": "img/Product/focolupa.jpg"},
   {"id": 49, "nombre": "Regla métrica de acero", "precio": 120, "categoria": "Herramientas de Reparación", "stock": 20, "imagen": "img/Product/termocuplaK.jpg"},
   {"id": 50, "nombre": "Aspiradora de escritorio USB", "precio": 360, "categoria": "Equipamiento", "stock": 5, "imagen": "img/Product/aspiradora.jpg"}
