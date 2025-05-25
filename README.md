@@ -31,25 +31,7 @@ bytefix/
 │   └── icon.png            # Icono del navegador
 ```
 
----
 
-## 🚀 Despliegue con GitHub Pages
-
-Puedes desplegar este sitio como página estática en GitHub siguiendo estos pasos:
-
-1. **Crea un repositorio nuevo** en GitHub llamado `bytefix`.
-2. Sube todos los archivos del proyecto a ese repositorio.
-3. Ve a la sección **Settings > Pages** del repositorio.
-4. En **Source**, elige la rama `main` y la carpeta raíz `/ (root)`.
-5. Guarda y espera unos segundos.
-
-Tu sitio estará disponible en una URL como:
-
-```
-https://<tu-usuario>.github.io/bytefix/
-```
-
----
 
 ## 🛠️ Servicios destacados
 
