@@ -8,12 +8,17 @@
 /* ===== CONFIGURACIÓN GLOBAL ===== */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background-color: #f5f8fa;
+    /*background-color: #f5f8fa;*/
   color: #333;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
   line-height: 1.6;
+  background-image: url(../img/fondo.png);
+ background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
 }
 
 /* ===== ENCABEZADO PRINCIPAL ===== */
@@ -259,6 +264,7 @@ form#formulario-producto button[type="submit"] {
 form#formulario-producto button:hover {
   background-color: #2980b9;
 }
+
 
 
 /* === BUSCADOR.HTML === */

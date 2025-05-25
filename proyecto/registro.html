@@ -4,30 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de Producto - ByteFix</title>
+  <link rel="icon" type="image/png" href="../img/icon.png"> <!--Icono de pestaña navegador-->
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
-  <script>
+ 
+
+  <header>
+    <nav class="navegacion-derecha">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Ver Productos</a></li>
+        
+      </ul>
+    </nav>
+    <h1>Registrar nuevo producto</h1>
+  </header>
+
+   <!-- <script>
     // Mostrar alerta al cargar la página
     alert(
       "Para crear un producto:\n\n" +
       "Ingrese nombre, categoría, precio y stock.\n" +
       "Seleccione una imagen representativa.\n" +
       "Guarde el producto para verlo en la lista general.\n" +
-      "Ejemplo de opciones disponibles: Taladro, Compresor, Sierra, etc."
+      "Ejemplo de opciones disponibles: Taladro, Compresor, Plc, etc."
     );
-  </script>
-
-  <header>
-    <nav class="navegacion-derecha">
-      <ul>
-        <li><a href="productos.html">Ver Productos</a></li>
-        <li><a href="index.html">Inicio</a></li>
-      </ul>
-    </nav>
-    <h1>Registrar nuevo producto</h1>
-  </header>
+  </script> -->
 
   <main>
     <section aria-label="Formulario de registro de producto">
@@ -44,20 +48,23 @@
 
         <div>
           <label for="precio">Precio:</label>
-          <input type="number" id="precio" placeholder="Precio" required>
+          <input type="number" id="precio" placeholder="Precio" min="1" required>
         </div>
 
         <div>
           <label for="stock">Stock:</label>
-          <input type="number" id="stock" placeholder="Stock" required>
+          <input type="number" id="stock" placeholder="Stock" min="1" required>
         </div>
 
         <div>
           <label for="imagen">Ruta de imagen (opcional):</label>
-          <input type="text" id="imagen" placeholder="Ruta de imagen (opcional)" value="img/fondo.png">
+          <input type="text" id="imagen" placeholder="Ruta de imagen (opcional)" value="/img/sinIMG.png">
         </div>
-
+        
         <button type="submit">Registrar Producto</button>
+
+        
+
       </form>
     </section>
   </main>
@@ -67,9 +74,8 @@
   </footer>
 
   <script src="../js/main.js"></script>
-  <script>
-    document.getElementById('formulario-producto').addEventListener('submit', registrarProducto);
-  </script>
+  
+  <script>document.getElementById('formulario-producto').addEventListener('submit', registrarProducto);</script>
 
 </body>
 </html>

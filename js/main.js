@@ -4,617 +4,114 @@ let currentPage = 1;
 let productosPorPagina = 15;
 
 // Detectar si estamos en buscador
-const esBuscador = window.location.pathname.includes("buscador.html");
+const esBuscador = window.location.pathname.includes("buscar.html");
 if (esBuscador) {
     productosPorPagina = 10;
 }
 
+
 function cargarProductos() {
-     productos = [
-  {
-    "nombre": "Sensor de Proximidad Inductivo",
-    "categoria": "Sensores",
-    "imagen": "https://ferretronica.com/cdn/shop/files/SensorInductivodeProximidadparaMetalLJ12A3-4-Z-BYPNPNormalmenteAbierto_Ferretronica_f6822d1e-7cdd-4e77-93b8-b3619788941c_x700.jpg?v=1685189319",
-    "codigo": "abc16b100",
-    "precio": 405.25,
-    "marca": "Siemens",
-    "compatibilidad": [
-      "Arduino",
-      "Raspberry Pi"
-    ]
-  },
-  {
-    "nombre": "PLC Siemens S7-1200",
-    "categoria": "Controladores",
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrm5lL3_UYMg6uZIa6Qspedx8-GQ1-V58Rlg&s",
-    "codigo": "abc16b101",
-    "precio": 132.87,
-    "marca": "Siemens",
-    "compatibilidad": [
-      "Variadores de Frecuencia",
-      "Motores AC"
-    ]
-  },
-  {
-    "nombre": "Fuente Switching 24V 10A",
-    "categoria": "Fuentes de alimentaci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_3.jpg",
-    "codigo": "abc16b102",
-    "precio": 493.85,
-    "marca": "Omron",
-    "compatibilidad": [
-      "Sensores",
-      "Actuadores"
-    ]
-  },
-  {
-    "nombre": "Motor Paso a Paso NEMA 17",
-    "categoria": "Motores",
-    "imagen": "https://bytefix.com/img/producto_4.jpg",
-    "codigo": "abc16b103",
-    "precio": 210.68,
-    "marca": "ByteMotion",
-    "compatibilidad": [
-      "Variadores de Frecuencia",
-      "Motores AC"
-    ]
-  },
-  {
-    "nombre": "Pantalla HMI 7'' t\u00e1ctil",
-    "categoria": "Interfaces hombre-m\u00e1quina",
-    "imagen": "https://bytefix.com/img/producto_5.jpg",
-    "codigo": "abc16b104",
-    "precio": 411.94,
-    "marca": "Siemens",
-    "compatibilidad": [
-      "CNC",
-      "Impresoras 3D"
-    ]
-  },
-  {
-    "nombre": "Variador de Frecuencia 2.2kW",
-    "categoria": "Variadores",
-    "imagen": "https://bytefix.com/img/producto_6.jpg",
-    "codigo": "abc16b105",
-    "precio": 341.51,
-    "marca": "Honeywell",
-    "compatibilidad": [
-      "RS485",
-      "UART"
-    ]
-  },
-  {
-    "nombre": "Rel\u00e9 de Estado S\u00f3lido",
-    "categoria": "Rel\u00e9s",
-    "imagen": "https://bytefix.com/img/producto_7.jpg",
-    "codigo": "abc16b106",
-    "precio": 181.44,
-    "marca": "Honeywell",
-    "compatibilidad": [
-      "PLC Siemens",
-      "Aut\u00f3matas Allen-Bradley"
-    ]
-  },
-  {
-    "nombre": "Cable Ethernet Industrial",
-    "categoria": "Cables",
-    "imagen": "https://bytefix.com/img/producto_8.jpg",
-    "codigo": "abc16b107",
-    "precio": 296.76,
-    "marca": "ByteMotion",
-    "compatibilidad": [
-      "SCADA",
-      "Modbus TCP/IP"
-    ]
-  },
-  {
-    "nombre": "M\u00f3dulo de Expansi\u00f3n Digital",
-    "categoria": "M\u00f3dulos",
-    "imagen": "https://bytefix.com/img/producto_9.jpg",
-    "codigo": "abc16b108",
-    "precio": 171.3,
-    "marca": "Phoenix Contact",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "Actuador Neum\u00e1tico",
-    "categoria": "Actuadores",
-    "imagen": "https://bytefix.com/img/producto_10.jpg",
-    "codigo": "abc16b109",
-    "precio": 550.97,
-    "marca": "LG Industrial",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "Contactor Tripolar 32A",
-    "categoria": "Contactores",
-    "imagen": "https://bytefix.com/img/producto_11.jpg",
-    "codigo": "abc16b110",
-    "precio": 28.24,
-    "marca": "Siemens",
-    "compatibilidad": [
-      "Arduino",
-      "Raspberry Pi"
-    ]
-  },
-  {
-    "nombre": "Disyuntor Termomagn\u00e9tico",
-    "categoria": "Protecci\u00f3n el\u00e9ctrica",
-    "imagen": "https://bytefix.com/img/producto_12.jpg",
-    "codigo": "abc16b111",
-    "precio": 295.03,
-    "marca": "Honeywell",
-    "compatibilidad": [
-      "WiFi",
-      "Bluetooth"
-    ]
-  },
-  {
-    "nombre": "Resistencia de Cartucho 300W",
-    "categoria": "Resistencias",
-    "imagen": "https://bytefix.com/img/producto_13.jpg",
-    "codigo": "abc16b112",
-    "precio": 55.95,
-    "marca": "Weintek",
-    "compatibilidad": [
-      "24V DC",
-      "12V DC"
-    ]
-  },
-  {
-    "nombre": "Acoplador \u00d3ptico",
-    "categoria": "Acopladores",
-    "imagen": "https://bytefix.com/img/producto_14.jpg",
-    "codigo": "abc16b113",
-    "precio": 20.25,
-    "marca": "Panasonic",
-    "compatibilidad": [
-      "Redes Industriales",
-      "Ethernet/IP"
-    ]
-  },
-  {
-    "nombre": "Ventilador de Enfriamiento 24V",
-    "categoria": "Ventilaci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_15.jpg",
-    "codigo": "abc16b114",
-    "precio": 98.88,
-    "marca": "Mean Well",
-    "compatibilidad": [
-      "CNC",
-      "Impresoras 3D"
-    ]
-  },
-  {
-    "nombre": "Tarjeta de Control CNC",
-    "categoria": "CNC",
-    "imagen": "https://bytefix.com/img/producto_16.jpg",
-    "codigo": "abc16b115",
-    "precio": 87.91,
-    "marca": "Omron",
-    "compatibilidad": [
-      "Sensores",
-      "Actuadores"
-    ]
-  },
-  {
-    "nombre": "Interruptor de L\u00edmite",
-    "categoria": "Interruptores",
-    "imagen": "https://bytefix.com/img/producto_17.jpg",
-    "codigo": "abc16b116",
-    "precio": 291.08,
-    "marca": "Siemens",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "Encoder \u00d3ptico Rotativo",
-    "categoria": "Encoders",
-    "imagen": "https://bytefix.com/img/producto_18.jpg",
-    "codigo": "abc16b117",
-    "precio": 347.23,
-    "marca": "WAGO",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "Filtro EMI Monof\u00e1sico",
-    "categoria": "Filtros",
-    "imagen": "https://bytefix.com/img/producto_19.jpg",
-    "codigo": "abc16b118",
-    "precio": 295.05,
-    "marca": "ABB",
-    "compatibilidad": [
-      "PLC Siemens",
-      "Aut\u00f3matas Allen-Bradley"
-    ]
-  },
-  {
-    "nombre": "Caja de Distribuci\u00f3n IP65",
-    "categoria": "Cajas",
-    "imagen": "https://bytefix.com/img/producto_20.jpg",
-    "codigo": "abc16b119",
-    "precio": 419.3,
-    "marca": "ByteFix",
-    "compatibilidad": [
-      "WiFi",
-      "Bluetooth"
-    ]
-  },
-  {
-    "nombre": "Sensor Fotoel\u00e9ctrico",
-    "categoria": "Visualizaci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_21.jpg",
-    "codigo": "abc16b120",
-    "precio": 430.01,
-    "marca": "ABB",
-    "compatibilidad": [
-      "Arduino",
-      "Raspberry Pi"
-    ]
-  },
-  {
-    "nombre": "Pantalla OLED I2C",
-    "categoria": "Pantallas",
-    "imagen": "https://bytefix.com/img/producto_22.jpg",
-    "codigo": "abc16b121",
-    "precio": 576.71,
-    "marca": "ByteFix",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "M\u00f3dulo WiFi ESP32",
-    "categoria": "Comunicaci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_23.jpg",
-    "codigo": "abc16b122",
-    "precio": 456.93,
-    "marca": "Schneider",
-    "compatibilidad": [
-      "24V DC",
-      "12V DC"
-    ]
-  },
-  {
-    "nombre": "C\u00e1mara Termogr\u00e1fica Port\u00e1til",
-    "categoria": "Instrumentos",
-    "imagen": "https://bytefix.com/img/producto_24.jpg",
-    "codigo": "abc16b123",
-    "precio": 542.72,
-    "marca": "ABB",
-    "compatibilidad": [
-      "CNC",
-      "Impresoras 3D"
-    ]
-  },
-  {
-    "nombre": "Term\u00f3metro Infrarrojo Industrial",
-    "categoria": "Medici\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_25.jpg",
-    "codigo": "abc16b124",
-    "precio": 176.96,
-    "marca": "Phoenix Contact",
-    "compatibilidad": [
-      "Bater\u00edas",
-      "Paneles Solares"
-    ]
-  },
-  {
-    "nombre": "Fuente Programable DC",
-    "categoria": "Herramientas",
-    "imagen": "https://bytefix.com/img/producto_26.jpg",
-    "codigo": "abc16b125",
-    "precio": 264.57,
-    "marca": "Panasonic",
-    "compatibilidad": [
-      "Redes Industriales",
-      "Ethernet/IP"
-    ]
-  },
-  {
-    "nombre": "Tester Digital Mult\u00edmetro",
-    "categoria": "Transformadores",
-    "imagen": "https://bytefix.com/img/producto_27.jpg",
-    "codigo": "abc16b126",
-    "precio": 398.54,
-    "marca": "Bosch",
-    "compatibilidad": [
-      "PLC Siemens",
-      "Aut\u00f3matas Allen-Bradley"
-    ]
-  },
-  {
-    "nombre": "Transformador Toroidal 12V",
-    "categoria": "Distribuci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_28.jpg",
-    "codigo": "abc16b127",
-    "precio": 28.9,
-    "marca": "Bosch",
-    "compatibilidad": [
-      "RS485",
-      "UART"
-    ]
-  },
-  {
-    "nombre": "Caja de Control Industrial",
-    "categoria": "Kits",
-    "imagen": "https://bytefix.com/img/producto_29.jpg",
-    "codigo": "abc16b128",
-    "precio": 563.41,
-    "marca": "LG Industrial",
-    "compatibilidad": [
-      "24V DC",
-      "12V DC"
-    ]
-  },
-  {
-    "nombre": "Kit de Cableado Industrial",
-    "categoria": "Conexiones",
-    "imagen": "https://bytefix.com/img/producto_30.jpg",
-    "codigo": "abc16b129",
-    "precio": 549.52,
-    "marca": "ByteFix",
-    "compatibilidad": [
-      "24V DC",
-      "12V DC"
-    ]
-  },
-  {
-    "nombre": "Bornera Din Rail",
-    "categoria": "Sensores",
-    "imagen": "https://bytefix.com/img/producto_31.jpg",
-    "codigo": "abc16b130",
-    "precio": 189.41,
-    "marca": "WAGO",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "M\u00f3dulo de Relevadores",
-    "categoria": "Controladores",
-    "imagen": "https://bytefix.com/img/producto_32.jpg",
-    "codigo": "abc16b131",
-    "precio": 519.34,
-    "marca": "Panasonic",
-    "compatibilidad": [
-      "CNC",
-      "Impresoras 3D"
-    ]
-  },
-  {
-    "nombre": "Kit de Herramientas Electr\u00f3nicas",
-    "categoria": "Fuentes de alimentaci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_33.jpg",
-    "codigo": "abc16b132",
-    "precio": 399.46,
-    "marca": "Bosch",
-    "compatibilidad": [
-      "Redes Industriales",
-      "Ethernet/IP"
-    ]
-  },
-  {
-    "nombre": "Detector de Movimiento PIR",
-    "categoria": "Motores",
-    "imagen": "https://bytefix.com/img/producto_34.jpg",
-    "codigo": "abc16b133",
-    "precio": 33.83,
-    "marca": "ByteMotion",
-    "compatibilidad": [
-      "PLC Siemens",
-      "Aut\u00f3matas Allen-Bradley"
-    ]
-  },
-  {
-    "nombre": "Cinta Aislante de Alta Temperatura",
-    "categoria": "Interfaces hombre-m\u00e1quina",
-    "imagen": "https://bytefix.com/img/producto_35.jpg",
-    "codigo": "abc16b134",
-    "precio": 250.5,
-    "marca": "Panasonic",
-    "compatibilidad": [
-      "PLC Siemens",
-      "Aut\u00f3matas Allen-Bradley"
-    ]
-  },
-  {
-    "nombre": "Lubricante El\u00e9ctrico",
-    "categoria": "Variadores",
-    "imagen": "https://bytefix.com/img/producto_36.jpg",
-    "codigo": "abc16b135",
-    "precio": 279.23,
-    "marca": "Panasonic",
-    "compatibilidad": [
-      "Variadores de Frecuencia",
-      "Motores AC"
-    ]
-  },
-  {
-    "nombre": "Interruptor Selector de 3 Posiciones",
-    "categoria": "Rel\u00e9s",
-    "imagen": "https://bytefix.com/img/producto_37.jpg",
-    "codigo": "abc16b136",
-    "precio": 373.47,
-    "marca": "Phoenix Contact",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "C\u00e1mara IP Industrial",
-    "categoria": "Cables",
-    "imagen": "https://bytefix.com/img/producto_38.jpg",
-    "codigo": "abc16b137",
-    "precio": 322.39,
-    "marca": "ByteMotion",
-    "compatibilidad": [
-      "Variadores de Frecuencia",
-      "Motores AC"
-    ]
-  },
-  {
-    "nombre": "Regulador de Voltaje LM317",
-    "categoria": "M\u00f3dulos",
-    "imagen": "https://bytefix.com/img/producto_39.jpg",
-    "codigo": "abc16b138",
-    "precio": 57.07,
-    "marca": "ByteMotion",
-    "compatibilidad": [
-      "Variadores de Frecuencia",
-      "Motores AC"
-    ]
-  },
-  {
-    "nombre": "Tira LED Industrial 24V",
-    "categoria": "Actuadores",
-    "imagen": "https://bytefix.com/img/producto_40.jpg",
-    "codigo": "abc16b139",
-    "precio": 288.34,
-    "marca": "ABB",
-    "compatibilidad": [
-      "CNC",
-      "Impresoras 3D"
-    ]
-  },
-  {
-    "nombre": "Sensor de Gas MQ-2",
-    "categoria": "Contactores",
-    "imagen": "https://bytefix.com/img/producto_41.jpg",
-    "codigo": "abc16b140",
-    "precio": 398.58,
-    "marca": "Bosch",
-    "compatibilidad": [
-      "SCADA",
-      "Modbus TCP/IP"
-    ]
-  },
-  {
-    "nombre": "Tarjeta Arduino Mega",
-    "categoria": "Protecci\u00f3n el\u00e9ctrica",
-    "imagen": "https://bytefix.com/img/producto_42.jpg",
-    "codigo": "abc16b141",
-    "precio": 589.2,
-    "marca": "Bosch",
-    "compatibilidad": [
-      "RS485",
-      "UART"
-    ]
-  },
-  {
-    "nombre": "Raspberry Pi 4",
-    "categoria": "Resistencias",
-    "imagen": "https://bytefix.com/img/producto_43.jpg",
-    "codigo": "abc16b142",
-    "precio": 395.31,
-    "marca": "WAGO",
-    "compatibilidad": [
-      "RS485",
-      "UART"
-    ]
-  },
-  {
-    "nombre": "Panel Solar 12V 50W",
-    "categoria": "Acopladores",
-    "imagen": "https://bytefix.com/img/producto_44.jpg",
-    "codigo": "abc16b143",
-    "precio": 341.49,
-    "marca": "LG Industrial",
-    "compatibilidad": [
-      "HMI",
-      "Controladores PID"
-    ]
-  },
-  {
-    "nombre": "Bater\u00eda de Litio 12V 20Ah",
-    "categoria": "Ventilaci\u00f3n",
-    "imagen": "https://bytefix.com/img/producto_45.jpg",
-    "codigo": "abc16b144",
-    "precio": 150.13,
-    "marca": "Siemens",
-    "compatibilidad": [
-      "CNC",
-      "Impresoras 3D"
-    ]
-  },
-  {
-    "nombre": "Medidor de Consumo El\u00e9ctrico",
-    "categoria": "CNC",
-    "imagen": "https://bytefix.com/img/producto_46.jpg",
-    "codigo": "abc16b145",
-    "precio": 570.19,
-    "marca": "ABB",
-    "compatibilidad": [
-      "WiFi",
-      "Bluetooth"
-    ]
-  },
-  {
-    "nombre": "Controlador PID",
-    "categoria": "Interruptores",
-    "imagen": "https://bytefix.com/img/producto_47.jpg",
-    "codigo": "abc16b146",
-    "precio": 391.14,
-    "marca": "Mean Well",
-    "compatibilidad": [
-      "RS485",
-      "UART"
-    ]
-  },
-  {
-    "nombre": "Sensor de Temperatura PT100",
-    "categoria": "Encoders",
-    "imagen": "https://bytefix.com/img/producto_48.jpg",
-    "codigo": "abc16b147",
-    "precio": 199.26,
-    "marca": "Honeywell",
-    "compatibilidad": [
-      "24V DC",
-      "12V DC"
-    ]
-  },
-  {
-    "nombre": "M\u00f3dulo GSM/GPRS SIM800L",
-    "categoria": "Filtros",
-    "imagen": "https://bytefix.com/img/producto_49.jpg",
-    "codigo": "abc16b148",
-    "precio": 124.67,
-    "marca": "ABB",
-    "compatibilidad": [
-      "24V DC",
-      "12V DC"
-    ]
-  },
-  {
-    "nombre": "Controlador de Carga Solar MPPT",
-    "categoria": "Cajas",
-    "imagen": "https://bytefix.com/img/producto_50.jpg",
-    "codigo": "abc16b149",
-    "precio": 595.93,
-    "marca": "Honeywell",
-    "compatibilidad": [
-      "PLC Siemens",
-      "Aut\u00f3matas Allen-Bradley"
-    ]
-  }
-];
+
+     const productosGuardados = JSON.parse(localStorage.getItem('productos'));
+
+    if (productosGuardados && productosGuardados.length > 0) {
+        productos = productosGuardados;
+    } else {
+
+  const productos = [ 
+    {"id": 1, "nombre": "Fuente de poder regulada (0-30V)", "precio": 1800, "categoria": "Instrumentación", "stock": 5, "imagen": "img/Product/fuente.jpg"},
+  {"id": 2, "nombre": "Osciloscopio digital 100MHz", "precio": 5500, "categoria": "Instrumentación", "stock": 2, "imagen": "img/Product/oscilocopio.jpg"},
+  {"id": 3, "nombre": "Multímetro digital True RMS", "precio": 750, "categoria": "Instrumentación", "stock": 10, "imagen": "img/Product/tester"},
+  {"id": 4, "nombre": "Estación de soldadura con temperatura controlada", "precio": 1200, "categoria": "Herramientas de Reparación", "stock": 6, "imagen": "img/Product/estacion.jpg"},
+  {"id": 5, "nombre": "Microscopio digital USB", "precio": 1600, "categoria": "Instrumentación", "stock": 3, "imagen": "img/Product/microscop.jpg"},
+  {"id": 6, "nombre": "Pinzas antiestáticas (set de 6)", "precio": 300, "categoria": "Herramientas de Reparación", "stock": 15, "imagen": "img/Product/pinzas6.jpg"},
+  {"id": 7, "nombre": "Extractor de humo para soldadura", "precio": 1900, "categoria": "Seguridad", "stock": 2, "imagen": "img/Product/extractorH.jpg"},
+  {"id": 8, "nombre": "Kit de componentes electrónicos (resistencias, capacitores, LEDs)", "precio": 450, "categoria": "Componentes", "stock": 20, "imagen": "img/Product/kitelectr.jpg"},
+  {"id": 9, "nombre": "Pasta para soldar (flux)", "precio": 120, "categoria": "Consumibles", "stock": 40, "imagen": "img/Product/pastaS.jpg"},
+  {"id": 10, "nombre": "Cinta kapton resistente al calor", "precio": 180, "categoria": "Consumibles", "stock": 25, "imagen": "img/Product/cintaCarlo.jpg"},
+  {"id": 11, "nombre": "Caja organizadora para componentes SMD", "precio": 350, "categoria": "Almacenamiento", "stock": 10, "imagen": "img/Product/cajaCom.jpg"},
+  {"id": 12, "nombre": "Ventilador extractor para laboratorio", "precio": 2200, "categoria": "Equipamiento", "stock": 2, "imagen": "img/Product/venti.jpg"},
+  {"id": 13, "nombre": "Limpiador ultrasónico de placas", "precio": 3200, "categoria": "Herramientas de Reparación", "stock": 1, "imagen": "img/Product/limpiarUltr.jpg"},
+  {"id": 14, "nombre": "Alcohol isopropílico 99% (1L)", "precio": 250, "categoria": "Consumibles", "stock": 12, "imagen": "img/Product/alcoholISo.jpg"},
+  {"id": 15, "nombre": "Tester de fuentes ATX", "precio": 500, "categoria": "Diagnóstico", "stock": 5, "imagen": "img/Product/testerATX.jpg"},
+  {"id": 16, "nombre": "Lupa con luz LED para mesa", "precio": 850, "categoria": "Instrumentación", "stock": 4, "imagen": "img/Product/lupa.jpg"},
+  {"id": 17, "nombre": "Desoldador eléctrico", "precio": 950, "categoria": "Herramientas de Reparación", "stock": 3, "imagen": "img/Product/desoldador.jpg"},
+  {"id": 18, "nombre": "Antiestático ESD tapete de trabajo", "precio": 1100, "categoria": "Seguridad", "stock": 5, "imagen": "img/Product/tapete.jpg"},
+  {"id": 19, "nombre": "Kit de destornilladores de precisión", "precio": 400, "categoria": "Herramientas de Reparación", "stock": 10, "imagen": "img/Product/kitdestorn.jpg"},
+  {"id": 20, "nombre": "Ventilador portátil USB para PCBs", "precio": 150, "categoria": "Equipamiento", "stock": 20, "imagen": "img/Product/ventilaPort.jpg"},
+  {"id": 21, "nombre": "Pinza amperimétrica digital", "precio": 1300, "categoria": "Instrumentación", "stock": 3, "imagen": "img/Product/pinzasamp.jpg"},
+  {"id": 22, "nombre": "Cepillo antiestático de limpieza", "precio": 100, "categoria": "Consumibles", "stock": 30, "imagen": "img/Product/cepilloant.jpg"},
+  {"id": 23, "nombre": "Kit de reparación para BGA", "precio": 3500, "categoria": "Herramientas de Reparación", "stock": 2, "imagen": "img/Product/kitBGA.jpg"},
+  {"id": 24, "nombre": "Gafas de protección UV", "precio": 200, "categoria": "Seguridad", "stock": 18, "imagen": "img/Product/gafas.jpg"},
+  {"id": 25, "nombre": "Tiras de LED SMD para prueba", "precio": 300, "categoria": "Componentes", "stock": 25, "imagen": "img/Product/tirasled.jpg"},
+  {"id": 26, "nombre": "Sensor de temperatura infrarrojo", "precio": 600, "categoria": "Instrumentación", "stock": 4, "imagen": "img/Product/sensorinfr.webp"},
+  {"id": 27, "nombre": "Adaptadores universales para cargadores", "precio": 550, "categoria": "Componentes", "stock": 8, "imagen": "img/Product/adatador.jpg"},
+  {"id": 28, "nombre": "Cinta doble faz para fijación de placas", "precio": 90, "categoria": "Consumibles", "stock": 50, "imagen": "img/Product/cintadoblefaz.jpg"},
+  {"id": 29, "nombre": "Cargador variable USB", "precio": 700, "categoria": "Instrumentación", "stock": 6, "imagen": "img/Product/cargadorvari.jpg"},
+  {"id": 30, "nombre": "Mini compresor de aire para limpieza", "precio": 2300, "categoria": "Equipamiento", "stock": 2, "imagen": "img/Product/minicompre.jpg"},
+  {"id": 31, "nombre": "Pinzas de corte de precisión", "precio": 250, "categoria": "Herramientas de Reparación", "stock": 15, "imagen": "img/Product/pinzacorteprecis.jpg"},
+  {"id": 32, "nombre": "Ventilador centrífugo extractor", "precio": 2800, "categoria": "Equipamiento", "stock": 2, "imagen": "img/Product/ventiladorcentri.webp"},
+  {"id": 33, "nombre": "Calibrador digital", "precio": 900, "categoria": "Instrumentación", "stock": 4, "imagen": "img/Product/calibradordig.jpg"},
+  {"id": 34, "nombre": "Batería Li-Ion 18650 (pack x4)", "precio": 650, "categoria": "Componentes", "stock": 12, "imagen": "img/Product/bateria.jpg"},
+  {"id": 35, "nombre": "Estación de retrabajo SMD", "precio": 4700, "categoria": "Herramientas de Reparación", "stock": 1, "imagen": "img/Product/estacionretrabajo.jpg"},
+  {"id": 36, "nombre": "Termómetro infrarrojo sin contacto", "precio": 800, "categoria": "Instrumentación", "stock": 3, "imagen": "img/Product/termometroinfr.jpg"},
+  {"id": 37, "nombre": "Espuma limpiadora de contactos", "precio": 280, "categoria": "Consumibles", "stock": 15, "imagen": "img/Product/limpiacontact.jpg"},
+  {"id": 38, "nombre": "Cinta conductiva de cobre", "precio": 320, "categoria": "Consumibles", "stock": 9, "imagen": "img/Product/cintaconductiva.jpg"},
+  {"id": 39, "nombre": "Tiras de prueba de voltaje", "precio": 100, "categoria": "Diagnóstico", "stock": 30, "imagen": "img/Product/tirastester.jpg"},
+  {"id": 40, "nombre": "Guantes antiestáticos ESD", "precio": 150, "categoria": "Seguridad", "stock": 25, "imagen": "img/Product/guantesantiesta.jpg"},
+  {"id": 41, "nombre": "Estuche de herramientas portátil", "precio": 1800, "categoria": "Almacenamiento", "stock": 5, "imagen": "img/Product/"},
+  {"id": 42, "nombre": "Kit de conectores JST", "precio": 370, "categoria": "Componentes", "stock": 10, "imagen": "img/Product/estuche.jpg"},
+  {"id": 43, "nombre": "Botiquín de primeros auxilios", "precio": 450, "categoria": "Seguridad", "stock": 7, "imagen": "img/Product/JST.jpg"},
+  {"id": 44, "nombre": "Extractor de IC (componentes)", "precio": 100, "categoria": "Herramientas de Reparación", "stock": 18, "imagen": "img/Product/botiquin.jpg"},
+  {"id": 45, "nombre": "Maletín antiestático para transporte", "precio": 2700, "categoria": "Almacenamiento", "stock": 3, "imagen": "img/Product/extractorIC.jpg"},
+  {"id": 46, "nombre": "Kit de sensores Arduino", "precio": 800, "categoria": "Componentes", "stock": 6, "imagen": "img/Product/maletinant.jpg"},
+  {"id": 47, "nombre": "Foco LED lupa de aumento", "precio": 1200, "categoria": "Instrumentación", "stock": 4, "imagen": "img/Product/kit sensores.htm"},
+  {"id": 48, "nombre": "Termocupla tipo K para multímetros", "precio": 150, "categoria": "Instrumentación", "stock": 10, "imagen": "img/Product/focolupa.jpg"},
+  {"id": 49, "nombre": "Regla métrica de acero", "precio": 120, "categoria": "Herramientas de Reparación", "stock": 20, "imagen": "img/Product/termocuplaK.jpg"},
+  {"id": 50, "nombre": "Aspiradora de escritorio USB", "precio": 360, "categoria": "Equipamiento", "stock": 5, "imagen": "img/Product/aspiradora.jpg"}
+  ];
+
+         localStorage.setItem('productos', JSON.stringify(productos));
+    }
+
     productosFiltrados = [...productos];
     renderProductos();
 }
+
+
+function registrarProducto(event) {
+    event.preventDefault(); // Evita que recargue la página
+
+    const nombre = document.getElementById('nombre').value;
+    const categoria = document.getElementById('categoria').value;
+    const precio = parseFloat(document.getElementById('precio').value);
+    const stock = parseInt(document.getElementById('stock').value);
+    const imagen = document.getElementById('imagen').value || 'img/fondo.png';
+
+    if (nombre && categoria && !isNaN(precio) && !isNaN(stock)) {
+        const nuevoProducto = {
+            
+            id: productos.length + 1,
+            nombre,
+            categoria,
+            precio,
+            stock,
+            imagen
+        };
+
+        
+
+        productos.push(nuevoProducto);
+        localStorage.setItem('productos', JSON.stringify(productos));
+
+        alert('Producto registrado exitosamente ✅');
+        document.getElementById('formulario-producto').reset();
+    } else {
+        alert('Por favor complete todos los campos correctamente ❗');
+    }
+}
+
+
 
 function renderProductos() {
     const contenedor = document.getElementById('contenedor-productos');
@@ -695,5 +192,6 @@ function limpiarFiltros() {
     currentPage = 1;
     renderProductos();
 }
+
 
 window.onload = cargarProductos;
