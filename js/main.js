@@ -92,6 +92,8 @@ function registrarProducto(event) {
     const imagen = document.getElementById('imagen').value || 'img/fondo.png';
 
     if (nombre && categoria && !isNaN(precio) && !isNaN(stock)) {
+
+
         const nuevoProducto = {
             
             id: productos.length + 1,
@@ -110,7 +112,11 @@ function registrarProducto(event) {
         alert('Producto registrado exitosamente ✅');
         document.getElementById('formulario-producto').reset();
     } else {
-        alert('Por favor complete todos los campos correctamente ❗');
+        alert("Por favor llena todos los campos. Serás redirigido a la página de indicaciones.");
+    window.location.href = "indicaciones.html"; // Redirige a la página de ayuda
+    return;
+        
+
     }
 }
 

@@ -21,14 +21,20 @@ ByteFix ofrece soluciones técnicas avanzadas para la reparación de equipos ind
 
 ```
 bytefix/
-├── index.html              # Página principal
-├── productos.html          # Catálogo de productos
-├── registro.html           # Registro de productos
-├── buscar.html             # Búsqueda de productos
+├── index.html # Página principal
+├── productos.html # Catálogo de productos
+├── registro.html # Registro de productos
+├── buscar.html # Búsqueda de productos
 ├── css/
-│   └── styles.css          # Estilos personalizados
+│ └── styles.css # Estilos personalizados
 ├── img/
-│   └── icon.png            # Icono del navegador
+│ ├── icon.png
+│ └── Product/
+│ ├── captura-home.png
+│ ├── captura-registro.png
+│ └── captura-buscar.png
+├── js/
+│ └── main.js # Funciones JS (registro, búsqueda, etc.)
 ```
 
 

@@ -17,43 +17,34 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="productos.html">Ver Productos</a></li>
         
+        
       </ul>
     </nav>
     <h1>Registrar nuevo producto</h1>
   </header>
 
-   <!-- <script>
-    // Mostrar alerta al cargar la página
-    alert(
-      "Para crear un producto:\n\n" +
-      "Ingrese nombre, categoría, precio y stock.\n" +
-      "Seleccione una imagen representativa.\n" +
-      "Guarde el producto para verlo en la lista general.\n" +
-      "Ejemplo de opciones disponibles: Taladro, Compresor, Plc, etc."
-    );
-  </script> -->
 
   <main>
     <section aria-label="Formulario de registro de producto">
       <form id="formulario-producto">
         <div>
           <label for="nombre">Nombre del producto:</label>
-          <input type="text" id="nombre" placeholder="Nombre del producto" required>
+          <input type="text" id="nombre" placeholder="Nombre del producto" >
         </div>
 
         <div>
           <label for="categoria">Categoría:</label>
-          <input type="text" id="categoria" placeholder="Categoría" required>
+          <input type="text" id="categoria" placeholder="Categoría" >
         </div>
         
         <div>
           <label for="precio">Precio:</label>
-          <input type="number" id="precio" placeholder="Precio" min="1" required>
+          <input type="number" id="precio" placeholder="Precio" min="1" >
         </div>
 
         <div>
           <label for="stock">Stock:</label>
-          <input type="number" id="stock" placeholder="Stock" min="1" required>
+          <input type="number" id="stock" placeholder="Stock" min="1" >
         </div>
 
         <div>
@@ -76,6 +67,20 @@
   <script src="../js/main.js"></script>
   
   <script>document.getElementById('formulario-producto').addEventListener('submit', registrarProducto);</script>
+
+  <script>
+  if (!nombre || !precio || !categoria || !stock || !imagen) {
+    alert("Por favor llena todos los campos. Serás redirigido a la página de indicaciones.");
+    window.location.href = "indicaciones.html"; // Redirige a la página de ayuda
+    return;
+  }
+
+  // Aquí iría el código para guardar el producto
+  alert("Producto registrado correctamente");
+  this.reset();
+
+
+  </script>
 
 </body>
 </html>
