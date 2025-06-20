@@ -119,28 +119,6 @@ footer {
   padding: 10px;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .navegacion-derecha {
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  .navegacion-derecha ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .navegacion-derecha a {
-    width: 100%;
-    text-align: center;
-  }
-
-  body {
-    padding: 10px;
-  }
-}
 
 
 /* === PRODUCTOS.HTML === */
@@ -381,3 +359,44 @@ form#formulario-producto button:hover {
   background-color: #0b6ec6;
 }
 
+
+
+/*=======Tabla buscar=======*/
+
+.scoreboard {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: auto;
+}
+
+.scoreboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 600px;
+}
+
+.scoreboardTable th,
+.scoreboardTable td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.scoreboardTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.scoreboardTableBodyRow:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.scoreboardTable img {
+  max-width: 60px;
+  height: auto;
+  border-radius: 5px;
+}
