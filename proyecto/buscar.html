@@ -24,13 +24,37 @@
   <main>
     <section id="filtros" aria-label="Filtros de búsqueda">
       <input type="text" id="filtro-nombre" placeholder="Nombre del producto">
-      <input type="text" id="filtro-categoria" placeholder="Categoría">
+      <input type="number" id="filtro-precio" placeholder="Precio">
+
+      
+          
+  <select id="categoria" >
+    <option value="">Selecciona una categoría</option>
+    <option value="Instrumentación">Instrumentación</option>
+    <option value="Herramientas de Reparación">Herramientas de Reparación</option>
+    <option value="Seguridad">Seguridad</option>
+    <option value="Componentes">Componentes</option>
+    <option value="Consumibles">Consumibles</option>
+  </select>
+        
       
       <button onclick="filtrarProductos()">Buscar 🔍</button>
       <button onclick="limpiarFiltros()">Limpiar ❌</button>
     </section>
-
-    <section id="contenedor-productos" aria-label="Resultados de búsqueda"></section>
+<section class="scoreboard" aria-label="Resultados de búsqueda">
+  <table class="scoreboardTable">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Categoría</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody id="contenedor-buscar"></tbody>
+  </table>
+</section>
     <section id="paginacion" aria-label="Controles de paginación"></section>
   </main>
 

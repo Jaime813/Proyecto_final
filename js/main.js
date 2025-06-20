@@ -155,6 +155,47 @@ function renderProductos() {
 
 
 
+
+function Buscar() {
+    const contenedor = document.getElementById('contenedor-buscar');
+    contenedor.innerHTML = ''; // Limpia solo el cuerpo de la tabla
+
+    const inicio = (currentPage - 1) * productosPorPagina;
+    const fin = inicio + productosPorPagina;
+    const productosPagina = productosFiltrados.slice(inicio, fin);
+
+    if (productosPagina.length === 0) {
+        contenedor.innerHTML = `
+            <tr>
+                <td colspan="5">No se encontraron productos.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    for (let i = 0; i < productosPagina.length; i++) {
+        const producto = productosPagina[i];
+        contenedor.innerHTML += `
+            <tr class="scoreboardTableBodyRow">
+                <td>
+                    <img src="/img/Product/${producto.imagen}" alt="${producto.nombre}" width="60"
+                         
+                </td>
+                <td>${producto.nombre}</td>
+                <td>$${producto.precio}</td>
+                <td>${producto.categoria}</td>
+                <td>${producto.stock}</td>
+            </tr>
+        `;
+    }
+
+    renderPaginacion();
+}
+
+
+
+
+
 function renderPaginacion() {
     const paginacion = document.getElementById('paginacion');
     paginacion.innerHTML = '';
@@ -178,34 +219,37 @@ function cambiarPagina(pagina) {
 
 function filtrarProductos() {
     const filtroNombre = document.getElementById('filtro-nombre').value.toLowerCase();
-    const filtroCategoria = document.getElementById('filtro-categoria').value.toLowerCase();
-    
+    const filtroCategoria = document.getElementById('categoria').value.toLowerCase(); // Corregido ID
+    const filtroPrecio = document.getElementById('filtro-precio').value;
 
-    productosFiltrados = []; // Limpiar antes de agregar
+    productosFiltrados = [];
 
     for (let i = 0; i < productos.length; i++) {
         const p = productos[i];
         const coincideNombre = filtroNombre === '' || p.nombre.toLowerCase().includes(filtroNombre);
         const coincideCategoria = filtroCategoria === '' || p.categoria.toLowerCase().includes(filtroCategoria);
-        
+        const coincidePrecio = filtroPrecio === '' || p.precio === parseFloat(filtroPrecio);
 
-        if (coincideNombre && coincideCategoria ) {
+        if (coincideNombre && coincideCategoria && coincidePrecio) {
             productosFiltrados.push(p);
         }
     }
 
     currentPage = 1;
-    renderProductos();
+    Buscar();
 }
+
 
 function limpiarFiltros() {
     document.getElementById('filtro-nombre').value = '';
-    document.getElementById('filtro-categoria').value = '';
-    
+    document.getElementById('filtro-precio').value = '';  
+    document.getElementById('categoria').value = '';       
+
     productosFiltrados = [...productos];
     currentPage = 1;
-    renderProductos();
+    Buscar();
 }
+
 
 
 window.onload = cargarProductos;
